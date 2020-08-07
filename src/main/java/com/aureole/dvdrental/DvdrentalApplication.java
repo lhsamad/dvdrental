@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
-@MapperScan("com.aureole.dvdrental.domain")
+@MapperScan("com.aureole.dvdrental.mapper")
 @SpringBootApplication
 public class DvdrentalApplication {
 

@@ -1,7 +1,7 @@
 package com.aureole.dvdrental.service;
 
 import com.aureole.dvdrental.domain.NicerButSlowerFilmList;
-import com.aureole.dvdrental.domain.NicerButSlowerFilmListMapper;
+import com.aureole.dvdrental.mapper.NicerButSlowerFilmListMapper;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
