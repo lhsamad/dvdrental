@@ -1,5 +1,6 @@
 package com.aureole.dvdrental.controller;
 
+import com.aureole.dvdrental.domain.FilmList;
 import com.aureole.dvdrental.domain.NicerButSlowerFilmList;
 import com.aureole.dvdrental.service.FilmService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +21,12 @@ public class FilmConroller {
     FilmService filmService;
 
     @GetMapping("/films")
-    public ResponseEntity<List<NicerButSlowerFilmList>> getAllFilms(@RequestParam(defaultValue = "1") Integer pageNo, @RequestParam(defaultValue = "10") Integer pageSize) {
-        List<NicerButSlowerFilmList> list = filmService.findByPage(pageNo, pageSize);
+    public ResponseEntity<List<FilmList>> getAllFilms(
+        @RequestParam(defaultValue = "1") Integer pageNo,
+        @RequestParam(defaultValue = "10") Integer pageSize,
+        @RequestParam(defaultValue = "id") String sortBy
+    ) {
+        List<FilmList> list = filmService.findByPage(pageNo, pageSize, sortBy);
         return new ResponseEntity<>(list, new HttpHeaders(), HttpStatus.OK);
     }
 }

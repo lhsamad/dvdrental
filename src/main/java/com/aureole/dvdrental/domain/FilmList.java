@@ -14,18 +14,11 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 public class FilmList implements Serializable {
     private Long fid;
-
     private String title;
-
     private String description;
-
     private String category;
-
     private BigDecimal price;
-
     private Short length;
-
     private String rating;
-
     private String actors;
 }

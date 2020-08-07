@@ -1,7 +1,7 @@
 package com.aureole.dvdrental.service;
 
-import com.aureole.dvdrental.domain.NicerButSlowerFilmList;
-import com.aureole.dvdrental.mapper.NicerButSlowerFilmListMapper;
+import com.aureole.dvdrental.domain.FilmList;
+import com.aureole.dvdrental.mapper.FilmListMapper;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +13,10 @@ import org.springframework.transaction.annotation.Transactional;
 public class FilmService {
 
     @Autowired
-    private NicerButSlowerFilmListMapper nicerButSlowerFilmListMapper;
+    private FilmListMapper filmListMapper;
 
-    public Page<NicerButSlowerFilmList> findByPage(int pageNo, int pageSize) {
-        PageHelper.startPage(pageNo, pageSize); //line 1
-        return nicerButSlowerFilmListMapper.findByPage(); //line 2
+    public Page<FilmList> findByPage(int pageNo, int pageSize, String sortBy) {
+        PageHelper.startPage(pageNo, pageSize, sortBy); //line 1
+        return filmListMapper.findByPage(); //line 2
     }
 }
