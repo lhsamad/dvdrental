@@ -18,26 +18,26 @@
     </resultMap>
     <sql id="Base_Column_List">
     film_id, title, description, release_year, language_id, rental_duration, rental_rate, 
-    `length`, replacement_cost, rating, last_update, special_features, `fulltext`
+    length, replacement_cost, rating, last_update, special_features, fulltext
   </sql>
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from `film`
+        from film
         where film_id = #{filmId,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from `film`
+    delete from film
     where film_id = #{filmId,jdbcType=INTEGER}
   </delete>
     <insert id="insert" parameterType="com.aureole.dvdrental.domain.Film">
         <selectKey keyProperty="filmId" order="AFTER" resultType="java.lang.Integer">
             PostgreSQL
         </selectKey>
-        insert into `film` (title, description, release_year,
+        insert into film (title, description, release_year,
         language_id, rental_duration, rental_rate,
-        `length`, replacement_cost, rating,
-        last_update, special_features, `fulltext`
+        length, replacement_cost, rating,
+        last_update, special_features, fulltext
         )
         values (#{title,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{releaseYear,jdbcType=DISTINCT},
         #{languageId,jdbcType=SMALLINT}, #{rentalDuration,jdbcType=SMALLINT}, #{rentalRate,jdbcType=NUMERIC},
@@ -49,7 +49,7 @@
         <selectKey keyProperty="filmId" order="AFTER" resultType="java.lang.Integer">
             PostgreSQL
         </selectKey>
-        insert into `film`
+        insert into film
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="title != null">
                 title,
@@ -70,7 +70,7 @@
                 rental_rate,
             </if>
             <if test="length != null">
-                `length`,
+                length,
             </if>
             <if test="replacementCost != null">
                 replacement_cost,
@@ -85,7 +85,7 @@
                 special_features,
             </if>
             <if test="fulltext != null">
-                `fulltext`,
+                fulltext,
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -128,7 +128,7 @@
         </trim>
     </insert>
     <update id="updateByPrimaryKeySelective" parameterType="com.aureole.dvdrental.domain.Film">
-        update `film`
+        update film
         <set>
             <if test="title != null">
                 title = #{title,jdbcType=VARCHAR},
@@ -149,7 +149,7 @@
                 rental_rate = #{rentalRate,jdbcType=NUMERIC},
             </if>
             <if test="length != null">
-                `length` = #{length,jdbcType=SMALLINT},
+                length = #{length,jdbcType=SMALLINT},
             </if>
             <if test="replacementCost != null">
                 replacement_cost = #{replacementCost,jdbcType=NUMERIC},
@@ -164,25 +164,25 @@
                 special_features = #{specialFeatures,jdbcType=ARRAY},
             </if>
             <if test="fulltext != null">
-                `fulltext` = #{fulltext,jdbcType=OTHER},
+                fulltext = #{fulltext,jdbcType=OTHER},
             </if>
         </set>
         where film_id = #{filmId,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.aureole.dvdrental.domain.Film">
-    update `film`
+    update film
     set title = #{title,jdbcType=VARCHAR},
       description = #{description,jdbcType=VARCHAR},
       release_year = #{releaseYear,jdbcType=DISTINCT},
       language_id = #{languageId,jdbcType=SMALLINT},
       rental_duration = #{rentalDuration,jdbcType=SMALLINT},
       rental_rate = #{rentalRate,jdbcType=NUMERIC},
-      `length` = #{length,jdbcType=SMALLINT},
+      length = #{length,jdbcType=SMALLINT},
       replacement_cost = #{replacementCost,jdbcType=NUMERIC},
       rating = #{rating,jdbcType=VARCHAR},
       last_update = #{lastUpdate,jdbcType=TIMESTAMP},
       special_features = #{specialFeatures,jdbcType=ARRAY},
-      `fulltext` = #{fulltext,jdbcType=OTHER}
+      fulltext = #{fulltext,jdbcType=OTHER}
     where film_id = #{filmId,jdbcType=INTEGER}
   </update>
 </mapper>

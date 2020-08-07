@@ -13,18 +13,18 @@
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from `actor`
+        from actor
         where actor_id = #{actorId,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from `actor`
+    delete from actor
     where actor_id = #{actorId,jdbcType=INTEGER}
   </delete>
     <insert id="insert" parameterType="com.aureole.dvdrental.domain.Actor">
         <selectKey keyProperty="actorId" order="AFTER" resultType="java.lang.Integer">
             PostgreSQL
         </selectKey>
-        insert into `actor` (first_name, last_name, last_update
+        insert into actor (first_name, last_name, last_update
         )
         values (#{firstName,jdbcType=VARCHAR}, #{lastName,jdbcType=VARCHAR}, #{lastUpdate,jdbcType=TIMESTAMP}
         )
@@ -33,7 +33,7 @@
         <selectKey keyProperty="actorId" order="AFTER" resultType="java.lang.Integer">
             PostgreSQL
         </selectKey>
-        insert into `actor`
+        insert into actor
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="firstName != null">
                 first_name,
@@ -58,7 +58,7 @@
         </trim>
     </insert>
     <update id="updateByPrimaryKeySelective" parameterType="com.aureole.dvdrental.domain.Actor">
-        update `actor`
+        update actor
         <set>
             <if test="firstName != null">
                 first_name = #{firstName,jdbcType=VARCHAR},
@@ -73,7 +73,7 @@
         where actor_id = #{actorId,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.aureole.dvdrental.domain.Actor">
-    update `actor`
+    update actor
     set first_name = #{firstName,jdbcType=VARCHAR},
       last_name = #{lastName,jdbcType=VARCHAR},
       last_update = #{lastUpdate,jdbcType=TIMESTAMP}

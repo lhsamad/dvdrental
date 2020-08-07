@@ -1,7 +1,7 @@
 package com.aureole.dvdrental.service;
 
-import com.aureole.dvdrental.domain.NicerButSlowerFilmList;
-import com.aureole.dvdrental.service.FilmService;
+import com.aureole.dvdrental.domain.Film;
+import com.aureole.dvdrental.domain.FilmList;
 import com.github.pagehelper.Page;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,16 +14,22 @@ import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class FilmServiceTest {
+public class FilmListServiceTest {
 
     @Autowired
-    private FilmService filmService;
+    private FilmListService filmListService;
 
     @Test
     public void testFindByPage() {
-        Page<NicerButSlowerFilmList> films = filmService.findByPage(1, 10);//Query pageNo=1, pageSize=2
+        Page<FilmList> films = filmListService.findByPage(1, 10, "fid");
         assertEquals(films.getTotal(), 997);
         assertEquals(films.getPages(), 100);
         System.out.println(films.toString());
+    }
+
+    @Test
+    public void testFindFilm() {
+        Film film = filmListService.findById(1);
+        System.out.println(film.toString());
     }
 }

@@ -12,25 +12,25 @@
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from `country`
+        from country
         where country_id = #{countryId,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from `country`
+    delete from country
     where country_id = #{countryId,jdbcType=INTEGER}
   </delete>
     <insert id="insert" parameterType="com.aureole.dvdrental.domain.Country">
         <selectKey keyProperty="countryId" order="AFTER" resultType="java.lang.Integer">
             PostgreSQL
         </selectKey>
-        insert into `country` (country, last_update)
+        insert into country (country, last_update)
         values (#{country,jdbcType=VARCHAR}, #{lastUpdate,jdbcType=TIMESTAMP})
     </insert>
     <insert id="insertSelective" parameterType="com.aureole.dvdrental.domain.Country">
         <selectKey keyProperty="countryId" order="AFTER" resultType="java.lang.Integer">
             PostgreSQL
         </selectKey>
-        insert into `country`
+        insert into country
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="country != null">
                 country,
@@ -49,7 +49,7 @@
         </trim>
     </insert>
     <update id="updateByPrimaryKeySelective" parameterType="com.aureole.dvdrental.domain.Country">
-        update `country`
+        update country
         <set>
             <if test="country != null">
                 country = #{country,jdbcType=VARCHAR},
@@ -61,7 +61,7 @@
         where country_id = #{countryId,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.aureole.dvdrental.domain.Country">
-    update `country`
+    update country
     set country = #{country,jdbcType=VARCHAR},
       last_update = #{lastUpdate,jdbcType=TIMESTAMP}
     where country_id = #{countryId,jdbcType=INTEGER}

@@ -13,12 +13,12 @@
             resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from `film_category`
+        from film_category
         where film_id = #{filmId,jdbcType=SMALLINT}
         and category_id = #{categoryId,jdbcType=SMALLINT}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="com.aureole.dvdrental.domain.FilmCategoryKey">
-    delete from `film_category`
+    delete from film_category
     where film_id = #{filmId,jdbcType=SMALLINT}
       and category_id = #{categoryId,jdbcType=SMALLINT}
   </delete>
@@ -26,14 +26,14 @@
         <selectKey keyProperty="filmId" order="AFTER" resultType="java.lang.Short">
             PostgreSQL
         </selectKey>
-        insert into `film_category` (category_id, last_update)
+        insert into film_category (category_id, last_update)
         values (#{categoryId,jdbcType=SMALLINT}, #{lastUpdate,jdbcType=TIMESTAMP})
     </insert>
     <insert id="insertSelective" parameterType="com.aureole.dvdrental.domain.FilmCategory">
         <selectKey keyProperty="filmId" order="AFTER" resultType="java.lang.Short">
             PostgreSQL
         </selectKey>
-        insert into `film_category`
+        insert into film_category
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="categoryId != null">
                 category_id,
@@ -52,7 +52,7 @@
         </trim>
     </insert>
     <update id="updateByPrimaryKeySelective" parameterType="com.aureole.dvdrental.domain.FilmCategory">
-        update `film_category`
+        update film_category
         <set>
             <if test="lastUpdate != null">
                 last_update = #{lastUpdate,jdbcType=TIMESTAMP},
@@ -62,7 +62,7 @@
         and category_id = #{categoryId,jdbcType=SMALLINT}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.aureole.dvdrental.domain.FilmCategory">
-    update `film_category`
+    update film_category
     set last_update = #{lastUpdate,jdbcType=TIMESTAMP}
     where film_id = #{filmId,jdbcType=SMALLINT}
       and category_id = #{categoryId,jdbcType=SMALLINT}

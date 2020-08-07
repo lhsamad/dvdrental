@@ -7,33 +7,33 @@
         <result column="last_update" jdbcType="TIMESTAMP" property="lastUpdate"/>
     </resultMap>
     <sql id="Base_Column_List">
-    category_id, `name`, last_update
+    category_id, name, last_update
   </sql>
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from `category`
+        from category
         where category_id = #{categoryId,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from `category`
+    delete from category
     where category_id = #{categoryId,jdbcType=INTEGER}
   </delete>
     <insert id="insert" parameterType="com.aureole.dvdrental.domain.Category">
         <selectKey keyProperty="categoryId" order="AFTER" resultType="java.lang.Integer">
             PostgreSQL
         </selectKey>
-        insert into `category` (`name`, last_update)
+        insert into category (name, last_update)
         values (#{name,jdbcType=VARCHAR}, #{lastUpdate,jdbcType=TIMESTAMP})
     </insert>
     <insert id="insertSelective" parameterType="com.aureole.dvdrental.domain.Category">
         <selectKey keyProperty="categoryId" order="AFTER" resultType="java.lang.Integer">
             PostgreSQL
         </selectKey>
-        insert into `category`
+        insert into category
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="name != null">
-                `name`,
+                name,
             </if>
             <if test="lastUpdate != null">
                 last_update,
@@ -49,10 +49,10 @@
         </trim>
     </insert>
     <update id="updateByPrimaryKeySelective" parameterType="com.aureole.dvdrental.domain.Category">
-        update `category`
+        update category
         <set>
             <if test="name != null">
-                `name` = #{name,jdbcType=VARCHAR},
+                name = #{name,jdbcType=VARCHAR},
             </if>
             <if test="lastUpdate != null">
                 last_update = #{lastUpdate,jdbcType=TIMESTAMP},
@@ -61,8 +61,8 @@
         where category_id = #{categoryId,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.aureole.dvdrental.domain.Category">
-    update `category`
-    set `name` = #{name,jdbcType=VARCHAR},
+    update category
+    set name = #{name,jdbcType=VARCHAR},
       last_update = #{lastUpdate,jdbcType=TIMESTAMP}
     where category_id = #{categoryId,jdbcType=INTEGER}
   </update>

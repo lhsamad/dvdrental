@@ -12,12 +12,12 @@
     <select id="selectByPrimaryKey" parameterType="com.aureole.dvdrental.domain.FilmActorKey" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from `film_actor`
+        from film_actor
         where actor_id = #{actorId,jdbcType=SMALLINT}
         and film_id = #{filmId,jdbcType=SMALLINT}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="com.aureole.dvdrental.domain.FilmActorKey">
-    delete from `film_actor`
+    delete from film_actor
     where actor_id = #{actorId,jdbcType=SMALLINT}
       and film_id = #{filmId,jdbcType=SMALLINT}
   </delete>
@@ -25,14 +25,14 @@
         <selectKey keyProperty="actorId" order="AFTER" resultType="java.lang.Short">
             PostgreSQL
         </selectKey>
-        insert into `film_actor` (film_id, last_update)
+        insert into film_actor (film_id, last_update)
         values (#{filmId,jdbcType=SMALLINT}, #{lastUpdate,jdbcType=TIMESTAMP})
     </insert>
     <insert id="insertSelective" parameterType="com.aureole.dvdrental.domain.FilmActor">
         <selectKey keyProperty="actorId" order="AFTER" resultType="java.lang.Short">
             PostgreSQL
         </selectKey>
-        insert into `film_actor`
+        insert into film_actor
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="filmId != null">
                 film_id,
@@ -51,7 +51,7 @@
         </trim>
     </insert>
     <update id="updateByPrimaryKeySelective" parameterType="com.aureole.dvdrental.domain.FilmActor">
-        update `film_actor`
+        update film_actor
         <set>
             <if test="lastUpdate != null">
                 last_update = #{lastUpdate,jdbcType=TIMESTAMP},
@@ -61,7 +61,7 @@
         and film_id = #{filmId,jdbcType=SMALLINT}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.aureole.dvdrental.domain.FilmActor">
-    update `film_actor`
+    update film_actor
     set last_update = #{lastUpdate,jdbcType=TIMESTAMP}
     where actor_id = #{actorId,jdbcType=SMALLINT}
       and film_id = #{filmId,jdbcType=SMALLINT}

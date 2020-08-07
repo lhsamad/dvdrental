@@ -9,23 +9,23 @@
         <result column="active" jdbcType="BIT" property="active"/>
     </resultMap>
     <sql id="Base_Column_List">
-    id, loginid, username, `password`, active
+    id, loginid, username, password, active
   </sql>
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from `user`
+        from user
         where id = #{id,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from `user`
+    delete from user
     where id = #{id,jdbcType=INTEGER}
   </delete>
     <insert id="insert" parameterType="com.aureole.dvdrental.domain.User">
         <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
             PostgreSQL
         </selectKey>
-        insert into `user` (loginid, username, `password`,
+        insert into user (loginid, username, password,
         active)
         values (#{loginid,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
         #{active,jdbcType=BIT})
@@ -34,7 +34,7 @@
         <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
             PostgreSQL
         </selectKey>
-        insert into `user`
+        insert into user
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="loginid != null">
                 loginid,
@@ -43,7 +43,7 @@
                 username,
             </if>
             <if test="password != null">
-                `password`,
+                password,
             </if>
             <if test="active != null">
                 active,
@@ -65,7 +65,7 @@
         </trim>
     </insert>
     <update id="updateByPrimaryKeySelective" parameterType="com.aureole.dvdrental.domain.User">
-        update `user`
+        update user
         <set>
             <if test="loginid != null">
                 loginid = #{loginid,jdbcType=VARCHAR},
@@ -74,7 +74,7 @@
                 username = #{username,jdbcType=VARCHAR},
             </if>
             <if test="password != null">
-                `password` = #{password,jdbcType=VARCHAR},
+                password = #{password,jdbcType=VARCHAR},
             </if>
             <if test="active != null">
                 active = #{active,jdbcType=BIT},
@@ -83,10 +83,10 @@
         where id = #{id,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.aureole.dvdrental.domain.User">
-    update `user`
+    update user
     set loginid = #{loginid,jdbcType=VARCHAR},
       username = #{username,jdbcType=VARCHAR},
-      `password` = #{password,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
       active = #{active,jdbcType=BIT}
     where id = #{id,jdbcType=INTEGER}
   </update>

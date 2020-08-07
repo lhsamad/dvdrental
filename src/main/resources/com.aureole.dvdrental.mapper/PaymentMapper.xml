@@ -15,18 +15,18 @@
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from `payment`
+        from payment
         where payment_id = #{paymentId,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from `payment`
+    delete from payment
     where payment_id = #{paymentId,jdbcType=INTEGER}
   </delete>
     <insert id="insert" parameterType="com.aureole.dvdrental.domain.Payment">
         <selectKey keyProperty="paymentId" order="AFTER" resultType="java.lang.Integer">
             PostgreSQL
         </selectKey>
-        insert into `payment` (customer_id, staff_id, rental_id,
+        insert into payment (customer_id, staff_id, rental_id,
         amount, payment_date)
         values (#{customerId,jdbcType=SMALLINT}, #{staffId,jdbcType=SMALLINT}, #{rentalId,jdbcType=INTEGER},
         #{amount,jdbcType=NUMERIC}, #{paymentDate,jdbcType=TIMESTAMP})
@@ -35,7 +35,7 @@
         <selectKey keyProperty="paymentId" order="AFTER" resultType="java.lang.Integer">
             PostgreSQL
         </selectKey>
-        insert into `payment`
+        insert into payment
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="customerId != null">
                 customer_id,
@@ -72,7 +72,7 @@
         </trim>
     </insert>
     <update id="updateByPrimaryKeySelective" parameterType="com.aureole.dvdrental.domain.Payment">
-        update `payment`
+        update payment
         <set>
             <if test="customerId != null">
                 customer_id = #{customerId,jdbcType=SMALLINT},
@@ -93,7 +93,7 @@
         where payment_id = #{paymentId,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.aureole.dvdrental.domain.Payment">
-    update `payment`
+    update payment
     set customer_id = #{customerId,jdbcType=SMALLINT},
       staff_id = #{staffId,jdbcType=SMALLINT},
       rental_id = #{rentalId,jdbcType=INTEGER},

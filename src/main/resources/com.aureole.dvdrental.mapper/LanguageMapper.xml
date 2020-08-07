@@ -7,33 +7,33 @@
         <result column="last_update" jdbcType="TIMESTAMP" property="lastUpdate"/>
     </resultMap>
     <sql id="Base_Column_List">
-    language_id, `name`, last_update
+    language_id, name, last_update
   </sql>
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from `language`
+        from language
         where language_id = #{languageId,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from `language`
+    delete from language
     where language_id = #{languageId,jdbcType=INTEGER}
   </delete>
     <insert id="insert" parameterType="com.aureole.dvdrental.domain.Language">
         <selectKey keyProperty="languageId" order="AFTER" resultType="java.lang.Integer">
             PostgreSQL
         </selectKey>
-        insert into `language` (`name`, last_update)
+        insert into language (name, last_update)
         values (#{name,jdbcType=CHAR}, #{lastUpdate,jdbcType=TIMESTAMP})
     </insert>
     <insert id="insertSelective" parameterType="com.aureole.dvdrental.domain.Language">
         <selectKey keyProperty="languageId" order="AFTER" resultType="java.lang.Integer">
             PostgreSQL
         </selectKey>
-        insert into `language`
+        insert into language
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="name != null">
-                `name`,
+                name,
             </if>
             <if test="lastUpdate != null">
                 last_update,
@@ -49,10 +49,10 @@
         </trim>
     </insert>
     <update id="updateByPrimaryKeySelective" parameterType="com.aureole.dvdrental.domain.Language">
-        update `language`
+        update language
         <set>
             <if test="name != null">
-                `name` = #{name,jdbcType=CHAR},
+                name = #{name,jdbcType=CHAR},
             </if>
             <if test="lastUpdate != null">
                 last_update = #{lastUpdate,jdbcType=TIMESTAMP},
@@ -61,8 +61,8 @@
         where language_id = #{languageId,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.aureole.dvdrental.domain.Language">
-    update `language`
-    set `name` = #{name,jdbcType=CHAR},
+    update language
+    set name = #{name,jdbcType=CHAR},
       last_update = #{lastUpdate,jdbcType=TIMESTAMP}
     where language_id = #{languageId,jdbcType=INTEGER}
   </update>

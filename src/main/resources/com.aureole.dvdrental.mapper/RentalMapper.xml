@@ -16,18 +16,18 @@
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from `rental`
+        from rental
         where rental_id = #{rentalId,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from `rental`
+    delete from rental
     where rental_id = #{rentalId,jdbcType=INTEGER}
   </delete>
     <insert id="insert" parameterType="com.aureole.dvdrental.domain.Rental">
         <selectKey keyProperty="rentalId" order="AFTER" resultType="java.lang.Integer">
             PostgreSQL
         </selectKey>
-        insert into `rental` (rental_date, inventory_id, customer_id,
+        insert into rental (rental_date, inventory_id, customer_id,
         return_date, staff_id, last_update
         )
         values (#{rentalDate,jdbcType=TIMESTAMP}, #{inventoryId,jdbcType=INTEGER}, #{customerId,jdbcType=SMALLINT},
@@ -38,7 +38,7 @@
         <selectKey keyProperty="rentalId" order="AFTER" resultType="java.lang.Integer">
             PostgreSQL
         </selectKey>
-        insert into `rental`
+        insert into rental
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="rentalDate != null">
                 rental_date,
@@ -81,7 +81,7 @@
         </trim>
     </insert>
     <update id="updateByPrimaryKeySelective" parameterType="com.aureole.dvdrental.domain.Rental">
-        update `rental`
+        update rental
         <set>
             <if test="rentalDate != null">
                 rental_date = #{rentalDate,jdbcType=TIMESTAMP},
@@ -105,7 +105,7 @@
         where rental_id = #{rentalId,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.aureole.dvdrental.domain.Rental">
-    update `rental`
+    update rental
     set rental_date = #{rentalDate,jdbcType=TIMESTAMP},
       inventory_id = #{inventoryId,jdbcType=INTEGER},
       customer_id = #{customerId,jdbcType=SMALLINT},

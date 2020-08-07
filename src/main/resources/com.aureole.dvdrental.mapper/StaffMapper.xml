@@ -17,7 +17,7 @@
         <result column="picture" jdbcType="BINARY" property="picture"/>
     </resultMap>
     <sql id="Base_Column_List">
-    staff_id, first_name, last_name, address_id, email, store_id, active, username, `password`, 
+    staff_id, first_name, last_name, address_id, email, store_id, active, username, password,
     last_update
   </sql>
     <sql id="Blob_Column_List">
@@ -28,20 +28,20 @@
         <include refid="Base_Column_List"/>
         ,
         <include refid="Blob_Column_List"/>
-        from `staff`
+        from staff
         where staff_id = #{staffId,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from `staff`
+    delete from staff
     where staff_id = #{staffId,jdbcType=INTEGER}
   </delete>
     <insert id="insert" parameterType="com.aureole.dvdrental.domain.Staff">
         <selectKey keyProperty="staffId" order="AFTER" resultType="java.lang.Integer">
             PostgreSQL
         </selectKey>
-        insert into `staff` (first_name, last_name, address_id,
+        insert into staff (first_name, last_name, address_id,
         email, store_id, active,
-        username, `password`, last_update,
+        username, password, last_update,
         picture)
         values (#{firstName,jdbcType=VARCHAR}, #{lastName,jdbcType=VARCHAR}, #{addressId,jdbcType=SMALLINT},
         #{email,jdbcType=VARCHAR}, #{storeId,jdbcType=SMALLINT}, #{active,jdbcType=BIT},
@@ -52,7 +52,7 @@
         <selectKey keyProperty="staffId" order="AFTER" resultType="java.lang.Integer">
             PostgreSQL
         </selectKey>
-        insert into `staff`
+        insert into staff
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="firstName != null">
                 first_name,
@@ -76,7 +76,7 @@
                 username,
             </if>
             <if test="password != null">
-                `password`,
+                password,
             </if>
             <if test="lastUpdate != null">
                 last_update,
@@ -119,7 +119,7 @@
         </trim>
     </insert>
     <update id="updateByPrimaryKeySelective" parameterType="com.aureole.dvdrental.domain.Staff">
-        update `staff`
+        update staff
         <set>
             <if test="firstName != null">
                 first_name = #{firstName,jdbcType=VARCHAR},
@@ -143,7 +143,7 @@
                 username = #{username,jdbcType=VARCHAR},
             </if>
             <if test="password != null">
-                `password` = #{password,jdbcType=VARCHAR},
+                password = #{password,jdbcType=VARCHAR},
             </if>
             <if test="lastUpdate != null">
                 last_update = #{lastUpdate,jdbcType=TIMESTAMP},
@@ -155,7 +155,7 @@
         where staff_id = #{staffId,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.aureole.dvdrental.domain.Staff">
-    update `staff`
+    update staff
     set first_name = #{firstName,jdbcType=VARCHAR},
       last_name = #{lastName,jdbcType=VARCHAR},
       address_id = #{addressId,jdbcType=SMALLINT},
@@ -163,13 +163,13 @@
       store_id = #{storeId,jdbcType=SMALLINT},
       active = #{active,jdbcType=BIT},
       username = #{username,jdbcType=VARCHAR},
-      `password` = #{password,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
       last_update = #{lastUpdate,jdbcType=TIMESTAMP},
       picture = #{picture,jdbcType=BINARY}
     where staff_id = #{staffId,jdbcType=INTEGER}
   </update>
     <update id="updateByPrimaryKey" parameterType="com.aureole.dvdrental.domain.Staff">
-    update `staff`
+    update staff
     set first_name = #{firstName,jdbcType=VARCHAR},
       last_name = #{lastName,jdbcType=VARCHAR},
       address_id = #{addressId,jdbcType=SMALLINT},
@@ -177,7 +177,7 @@
       store_id = #{storeId,jdbcType=SMALLINT},
       active = #{active,jdbcType=BIT},
       username = #{username,jdbcType=VARCHAR},
-      `password` = #{password,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
       last_update = #{lastUpdate,jdbcType=TIMESTAMP}
     where staff_id = #{staffId,jdbcType=INTEGER}
   </update>

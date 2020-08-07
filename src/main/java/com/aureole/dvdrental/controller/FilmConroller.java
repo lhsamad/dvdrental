@@ -1,13 +1,14 @@
 package com.aureole.dvdrental.controller;
 
+import com.aureole.dvdrental.domain.Film;
 import com.aureole.dvdrental.domain.FilmList;
-import com.aureole.dvdrental.domain.NicerButSlowerFilmList;
-import com.aureole.dvdrental.service.FilmService;
+import com.aureole.dvdrental.service.FilmListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,7 +19,7 @@ import java.util.List;
 public class FilmConroller {
 
     @Autowired
-    FilmService filmService;
+    FilmListService filmListService;
 
     @GetMapping("/films")
     public ResponseEntity<List<FilmList>> getAllFilms(
@@ -26,7 +27,12 @@ public class FilmConroller {
         @RequestParam(defaultValue = "10") Integer pageSize,
         @RequestParam(defaultValue = "id") String sortBy
     ) {
-        List<FilmList> list = filmService.findByPage(pageNo, pageSize, sortBy);
+        List<FilmList> list = filmListService.findByPage(pageNo, pageSize, sortBy);
         return new ResponseEntity<>(list, new HttpHeaders(), HttpStatus.OK);
+    }
+
+    @GetMapping("/film/{filmId}")
+    public Film findById(@PathVariable Integer filmId) {
+        return filmListService.findById(filmId);
     }
 }

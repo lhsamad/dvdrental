@@ -13,18 +13,18 @@
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from `inventory`
+        from inventory
         where inventory_id = #{inventoryId,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from `inventory`
+    delete from inventory
     where inventory_id = #{inventoryId,jdbcType=INTEGER}
   </delete>
     <insert id="insert" parameterType="com.aureole.dvdrental.domain.Inventory">
         <selectKey keyProperty="inventoryId" order="AFTER" resultType="java.lang.Integer">
             PostgreSQL
         </selectKey>
-        insert into `inventory` (film_id, store_id, last_update
+        insert into inventory (film_id, store_id, last_update
         )
         values (#{filmId,jdbcType=SMALLINT}, #{storeId,jdbcType=SMALLINT}, #{lastUpdate,jdbcType=TIMESTAMP}
         )
@@ -33,7 +33,7 @@
         <selectKey keyProperty="inventoryId" order="AFTER" resultType="java.lang.Integer">
             PostgreSQL
         </selectKey>
-        insert into `inventory`
+        insert into inventory
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="filmId != null">
                 film_id,
@@ -58,7 +58,7 @@
         </trim>
     </insert>
     <update id="updateByPrimaryKeySelective" parameterType="com.aureole.dvdrental.domain.Inventory">
-        update `inventory`
+        update inventory
         <set>
             <if test="filmId != null">
                 film_id = #{filmId,jdbcType=SMALLINT},
@@ -73,7 +73,7 @@
         where inventory_id = #{inventoryId,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.aureole.dvdrental.domain.Inventory">
-    update `inventory`
+    update inventory
     set film_id = #{filmId,jdbcType=SMALLINT},
       store_id = #{storeId,jdbcType=SMALLINT},
       last_update = #{lastUpdate,jdbcType=TIMESTAMP}
