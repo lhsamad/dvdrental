@@ -25,7 +25,7 @@ public class FilmConroller {
     public ResponseEntity<List<FilmList>> getAllFilms(
         @RequestParam(defaultValue = "1") Integer pageNo,
         @RequestParam(defaultValue = "10") Integer pageSize,
-        @RequestParam(defaultValue = "id") String sortBy
+        @RequestParam(defaultValue = "fid") String sortBy
     ) {
         List<FilmList> list = filmListService.findByPage(pageNo, pageSize, sortBy);
         return new ResponseEntity<>(list, new HttpHeaders(), HttpStatus.OK);
